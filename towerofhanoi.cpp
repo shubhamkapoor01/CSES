@@ -3,6 +3,8 @@ using namespace std;
 
 #define ll long long
 #define ld long double
+#define pb push_back
+#define pf push_front
 #define ff first
 #define ss second
 #define endl "\n"

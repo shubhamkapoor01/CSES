@@ -13,16 +13,7 @@ using namespace std;
 
 
 ll solve(ll n, vector<ll> &dp) {
-	if (n < 2) {
-		dp[n] = 0;
-		return dp[n];
-	}
-
-	if (dp[n] != -1) {
-		return dp[n];
-	}
-
-	
+	// TODO
 }
 
 int main () {

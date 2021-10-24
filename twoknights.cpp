@@ -1,11 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
 #define ll long long
 #define ld long double
+#define pb push_back
+#define pf push_front
 #define ff first
 #define ss second
 #define endl "\n"
+
 
 ll solve(ll n, vector<ll> &dp) {
 	if (n < 2) {

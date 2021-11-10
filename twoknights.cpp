@@ -12,20 +12,32 @@ using namespace std;
 #define endl "\n"
 
 
-ll solve(ll n, vector<ll> &dp) {
-	// TODO try dp 
-}
+
 
 int main () {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll n;
+	ll n, f = 1;
+	ll k = 1;
 	cin >> n;
-	vector<ll> dp(n + 1, -1);
-	ll ans = solve(n, dp);
-	for (ll i = 0; i <= n; i ++)
-		cout << dp[i] << endl;
-	return 0;
+
+	if(n >= 1) cout << 0 << endl;
+	if(n >= 2) cout << 6 << endl;
+	//if(n >= 3) cout << 28 << endl;
+	if(n < 3) return 0; 
+	for(int i = 3; i <= n; i++) {
+	    ll j = i * i;
+		f = j;
+		f *= (j - 1);
+		f /= 2;
+        //cout << f << " " ;
+		k = 8;
+		k += 6 * ((i - 2) * 2 - 2);
+		k += 4 * (i - 3) * (i - 3);
+        //cout << k << " " ;
+		cout << f - k << endl;
+
+	}
 }

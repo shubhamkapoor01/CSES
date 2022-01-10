@@ -9,30 +9,32 @@ using namespace std;
 #define ss second
 #define endl "\n"
 
-ll ans = 0;
-bool col[0], d1[16], d2[16];
+void solve(vector<vector<char>> v, ll r, ll &ans, 
+						vector<bool> vr, vector<bool> vc, 
+							vector<bool> vd1, vector<bool> vd2) {
 
-void solve(vector<vector<char>> v, ll r) {
 	if (r == 8) {
 		ans ++;
 		return;
 	}
+	
+	for (int i = 0; i < 8; i ++) {
+		if (v[r][i] == '.' && !vr[r] && !vc[i] && !vd1[i + r] && !vd2[7 + i - r]) {
+			v[r][i] = 'q';
+			vr[r] = true;
+			vc[i] = true;
+			vd1[i + r] = true;
+			vd2[7 + i - r] = true;
 
-	ll ans = 0;
+			solve(v, r + 1, ans, vr, vc, vd1, vd2);
 
-	for (ll i = 0; i < 8; i ++) {
-		if (v[r][i] == '.' && !col[i] && !d1[r - i + 7] && !d2[r + i]) {
-			col[i] = true;
-			d2[r + i] = true;
-			d1[r - i + 7] = true;
-			solve(v, r + 1);
-			d1[r - i + 7] = false;
-			d2[r + i] = false;
-			col[i] = false;
+			vd2[7 + i - r] = false;
+			vd1[i + r] = false;
+			vc[i] = false;
+			vr[r] = false;
+			v[r][i] = '.';
 		}
 	}
-
-	return;
 }
 
 int main () {
@@ -47,7 +49,13 @@ int main () {
 		}
 	}
 
-  solve(v, 0);
+	vector<bool> vr(8, false);
+	vector<bool> vc(8, false);
+	vector<bool> vd1(15, false);
+	vector<bool> vd2(15, false);
+
+	ll ans = 0;
+  solve(v, 0, ans, vr, vc, vd1, vd2);
 	cout << ans << endl;
 	return 0;
 }

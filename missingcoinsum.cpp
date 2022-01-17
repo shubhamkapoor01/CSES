@@ -15,6 +15,21 @@ int main () {
 	cin.tie(NULL);
 	cout.tie(NULL);
 
+	ll n;
+	cin >> n;
+	vector<ll> v(n);
+	for (ll i = 0; i < n; i ++) {
+		cin >> v[i];
+	}
+
+	sort(v.begin(), v.end());
+
+	vector<ll> prefix(n);
+	prefix[0] = v[0];
+	for (ll i = 1; i < n; i ++) {
+		prefix[i] = prefix[i - 1] + v[i];
+	}
+
 	
 	return 0;
 }

@@ -22,10 +22,6 @@ int main () {
 		cin >> v[i];
 	}
 
-	sort(v.begin(), v.end());
-
-
+	
 	return 0;
 }
-
-1 2 2 7 9

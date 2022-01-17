@@ -18,14 +18,27 @@ int main () {
 	ll n;
 	cin >> n;
 	vector<ll> v(n);
-	for (ll i = 0; i < n; i ++) {
+	for (int i = 0; i < n; i ++) {
 		cin >> v[i];
 	}
 
-	sort(v.begin(), v.end());
+	map<ll, ll> m;
+	ll ans = 0;
+	ll we = 0;
+	ll ws = 0;
 
+	while (we < n) {
+		m[v[we]] ++;
 
+		while (m[v[we]] > 1) {
+			m[v[ws]] --;
+			ws ++;
+		}
+
+		ans = max(ans, we - ws + 1);
+		we ++;
+	}
+
+	cout << ans << endl;
 	return 0;
 }
-
-1 2 2 7 9

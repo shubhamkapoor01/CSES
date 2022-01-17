@@ -18,14 +18,23 @@ int main () {
 	ll n;
 	cin >> n;
 	vector<ll> v(n);
+	map<ll, ll> mp;
+
 	for (ll i = 0; i < n; i ++) {
 		cin >> v[i];
+		mp[v[i]] = i;
 	}
 
-	sort(v.begin(), v.end());
+	ll curr = 1;
+	ll rounds = 1;
 
+	while (curr < n) {
+		if (mp[curr] > mp[curr + 1]) {
+			rounds ++;
+		}
+		curr ++;
+	}
 
+	cout << rounds << endl;
 	return 0;
 }
-
-1 2 2 7 9

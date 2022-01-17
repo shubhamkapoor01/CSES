@@ -17,15 +17,22 @@ int main () {
 
 	ll n;
 	cin >> n;
-	vector<ll> v(n);
-	for (ll i = 0; i < n; i ++) {
-		cin >> v[i];
+	queue<ll> q;
+	for (int i = 0; i < n; i ++) {
+		q.push(i + 1);
 	}
 
-	sort(v.begin(), v.end());
+	while (q.size() > 1) {
+		ll f = q.front();
+		q.pop();
+		ll s = q.front();
+		q.pop();
 
+		cout << s << " ";
+		q.push(f);
+	}
 
+	cout << q.front() << endl;
+	q.pop();
 	return 0;
 }
-
-1 2 2 7 9

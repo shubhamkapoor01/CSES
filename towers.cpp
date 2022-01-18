@@ -17,11 +17,20 @@ int main () {
 
 	ll n;
 	cin >> n;
-	vector<ll> v(n);
+	vector<ll> v;
+
 	for (ll i = 0; i < n; i ++) {
-		cin >> v[i];
+		ll ele;
+		cin >> ele;
+		ll pos = upper_bound(v.begin(), v.end(), ele) - v.begin();
+		
+		if (pos >= v.size()) {
+			v.push_back(ele);
+		} else {
+			v[pos] = ele;
+		}
 	}
 
-	
+	cout << v.size() << endl;
 	return 0;
 }

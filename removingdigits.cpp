@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define mod 1000000007
 #define ll long long
 #define ld long double
 #define pb push_back
@@ -11,25 +10,33 @@ using namespace std;
 #define endl "\n"
 
 
-int main () {
-	ll n, x;
-	cin >> n >> x;
-	vector<ll> v(n);
-	for (ll i = 0; i < n; i ++) {
-		cin >> v[i];
-	}
-	
-	vector<ll> dp(x + 1, 0);
-	dp[0] = 1;
+ll solve(ll n, vector<ll>& dp) {
+	if (n == 0) return 0;
+	if (dp[n] != -1) return dp[n];
 
-	for (ll i = 1; i <= n; i ++) {
-		for (ll j = 1; j <= x; j ++) {
-			if (j - v[i - 1] >= 0) {
-				dp[j] = (dp[j] % mod + dp[j - v[i - 1]] % mod) % mod;
-			}
+	ll ans = 1e9;
+	ll temp = n;
+
+	while (temp) {
+		ll digit = temp % 10;
+		temp /= 10;
+		if (digit > 0) {
+			ans = min(ans, 1 + solve(n - digit, dp));
 		}
 	}
 
-	cout << dp[x] << endl;
+	dp[n] = ans;
+	return ans;
+}
+
+int main () {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	ll n;
+	cin >> n;
+	vector<ll> dp(n + 1, -1);
+	cout << solve(n, dp) << endl;
 	return 0;
 }

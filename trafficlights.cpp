@@ -15,18 +15,31 @@ int main () {
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll x, n;
-	cin >> x >> n;
-	vector<ll> v(n);
-	for (ll i = 0; i < n; i ++) {
-		cin >> v[i];
-	}
+	ll x, q;
+	cin >> x >> q;
 
-	ll ans = max(v[0], x - v[n - 1]);
-	for (ll i = 1; i < n; i ++) {
-		ans = max(ans, v[i] - v[i - 1]);
-	}
+	map<ll, ll> mp;
+	set<ll> st;
 
-	
+    mp[x] = 1;
+	st.insert(0);
+	st.insert(x);
+
+	while (q --) {
+	  ll input;
+		cin >> input;
+		auto lower = st.lower_bound(input);
+		ll right = *lower;
+		lower --;
+		ll left = *lower;
+		
+		mp[right - left] --;
+		if (!mp[right - left]) mp.erase(right - left);
+		mp[right - input] ++;
+		mp[input - left] ++;
+		
+		st.insert(input);
+		cout << mp.rbegin() -> first << " ";
+	}
 	return 0;
 }

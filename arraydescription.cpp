@@ -63,6 +63,6 @@ int main () {
 	}
 
 	vector<vector<ll>> dp(n, vector<ll> (101, -1));
-	cout << solve(v, m, 0, -1, dp) +  << endl;
+	cout << solve(v, m, 0, -1, dp) << endl;
 	return 0;
 }
